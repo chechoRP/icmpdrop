@@ -4,9 +4,11 @@ package uky.icmpdrop;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
+
 /* Libraries needed for developing ODL application*/
 import org.apache.felix.dm.Component;
 import org.opendaylight.controller.sal.core.ComponentActivatorAbstractBase;
+import org.opendaylight.controller.sal.flowprogrammer.IFlowProgrammerService;
 import org.opendaylight.controller.sal.packet.IDataPacketService;
 import org.opendaylight.controller.sal.packet.IListenDataPacket;
 import org.slf4j.Logger;
@@ -39,6 +41,9 @@ public class Activator extends ComponentActivatorAbstractBase{
  
             // Need the DataPacketService for encoding, decoding, sending data packets
             c.add(createContainerServiceDependency(containerName).setService(IDataPacketService.class).setCallbacks("setDataPacketService", "unsetDataPacketService").setRequired(true));
+            
+         // Need the FlowProgrammerService for programming flows
+            c.add(createContainerServiceDependency(containerName).setService(IFlowProgrammerService.class).setCallbacks("setFlowProgrammerService", "unsetFlowProgrammerService").setRequired(true));
  
         }
     }
