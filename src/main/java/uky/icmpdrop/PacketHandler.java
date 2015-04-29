@@ -111,6 +111,7 @@ public class PacketHandler implements IListenDataPacket {
                 return PacketResult.CONSUME;
             } else {
             	System.out.println("Received another type of packet from node: " + node.getNodeIDString());
+            	System.out.println("Payload - " + l3Pkt.toString());
             }
         }
         // Do not process the packet. Maybe another handler will do it 
